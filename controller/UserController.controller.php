@@ -9,7 +9,7 @@ class UserController extends Controller{
     
     private $userDb;
     private $roleDb;
-    
+     
     
     public function __construct() {
         parent::__construct();
