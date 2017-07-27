@@ -21,6 +21,10 @@ abstract class Controller {
      * 
      */
     public function __construct() {
+        
+    
+        
+        
         $this->request = $this->sanitizeRequest(array_merge($_GET, $_POST));
         
         $this->data = new stdClass();
@@ -41,8 +45,8 @@ abstract class Controller {
         
         $request = $this->request;
         $data = $this->data;
-        
         $content = Config::getInstance()->get('view_dir') . "/_" . $name . '.php';
+        
         $templatePath = Config::getInstance()->get('view_dir') . '/index.php';
         
         if (file_exists($templatePath)){

@@ -58,6 +58,13 @@
             "Controller": "Bag",
             "Action": "process",
             "UserType": "Admin|Customer"
+        },
+        {
+            "Controller": "Bag",
+            "Action": "remove",
+            "UserType": "Admin|Customer"
         }
+        
+        
     ]
 }

@@ -1,6 +1,10 @@
 <div class="row">
     <div class="col-md-12">
         <h3> Albums </h3>
+        
+        
+        <?php if(!empty($data->BagLines)): ?>
+        <?php var_dump($data->BagLines); ?>
         <table  class="table table-responsive table-bordered">
             <thead>
                 <tr>
@@ -21,11 +25,17 @@
                     <td><?= $bagline['nickname']?></td>
                     <td><?= $bagline['price']?></td>
                     <td>
-                        <a href="/mediadb/index.php?id=<?= $bagline['title']?>&controller=Bag&action=remove">Remove</a>
+                        <a href="/mediadb/index.php?id=<?= $bagline['Album_id']?>&controller=Bag&action=remove">Remove</a>
                     </td>
                 </tr>
                <?php endforeach;?>
             </tbody>
         </table>
+        <?php endif;?>
+        
+        
+        
+        
+        
     </div>
 </div>
