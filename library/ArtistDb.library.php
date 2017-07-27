@@ -13,4 +13,12 @@
  */
 class ArtistDb extends DbBase {
     
+    
+    public function __construct($table = "") {
+        parent::__construct('Artist');
+    }
+    
+    
+    
+    
 }

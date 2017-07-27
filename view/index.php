@@ -57,6 +57,18 @@
                             </li>
                         </ul>
                     <?php endif; ?>
+                    
+                 
+                       <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artists<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/mediadb/index.php?controller=Artist&action=show">Show</a></li>                          
+                                </ul>
+                            </li>
+                        </ul>
+               
+                    
                     <?php if (!Engine::HasUser()): ?>
                         <form class="navbar-form navbar-right" method="post" action="/mediadb/index.php?controller=User&action=login">
                             <div class="form-group">
