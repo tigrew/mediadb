@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <h3>User Search</h3>
         <div class="col-md-6">
-            <form class="form form-inline" method="post" action="/index.php?controller=User&action=search">
+            <form class="form form-inline" method="post" action="/mediadb/index.php?controller=User&action=search">
 
                 <div class="form-group">
                     <label>Search By Email</label>
@@ -15,7 +15,7 @@
             </form>
         </div>
         <div class="col-md-6">
-            <form class="form form-inline" method="post" action="/index.php?controller=User&action=search">
+            <form class="form form-inline" method="post" action="/mediadb/index.php?controller=User&action=search">
 
                 <div class="form-group">
                     <label>Search By Role</label>   
@@ -41,15 +41,15 @@
             <?php foreach ($data->users as $user): ?>
                 <tr>
                     <td><?= $user['mail'] ?></td>
-                    <td><a href="/index.php?id=<?= $user['id'] ?>&controller=User&action=edit">Edit</a>
-                        <a href="/index.php?id=<?= $user['id'] ?>&controller=User&action=delete">Delete</a></td>
+                    <td><a href="/mediadb/index.php?id=<?= $user['id'] ?>&controller=User&action=edit">Edit</a>
+                        <a href="/mediadb/index.php?id=<?= $user['id'] ?>&controller=User&action=delete">Delete</a></td>
                 </tr>    
             <?php endforeach; ?>
         </table>
     </div>
     <div class="col-md-12">
         <h3>User Add</h3>
-        <form class="form form-inline" method="post" action="/index.php?controller=User&action=add">
+        <form class="form form-inline" method="post" action="/mediadb/index.php?controller=User&action=add">
             <div class="form-group">
                 <input type="text" name="email" class="form-control" placeholder="Email">
             </div>

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <h3>User Edit</h3>
-        <form class="form form-inline" method="post" action="/index.php?id=<?= $data->user['id']?>&controller=User&action=edit">
+        <form class="form form-inline" method="post" action="/mediadb/index.php?id=<?= $data->user['id']?>&controller=User&action=edit">
             <div class="form-group">
                 <input type="text" name="email" class="form-control" placeholder="Email" value="<?= $data->user['mail']?>">
             </div>

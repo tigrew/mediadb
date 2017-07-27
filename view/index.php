@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Music Space</a>
+                    <a class="navbar-brand" href="/mediadb/index.php?controller=Dashboard&action=index">Music Space</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -41,7 +41,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/index.php?controller=User&action=index">User Management</a></li>
+                                        <li><a href="/mediadb/index.php?controller=User&action=index">User Management</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -51,15 +51,15 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My basket <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/index.php?controller=Bag&action=index">Content</a></li>
-                                        <li><a href="/index.php?controller=Bag&action=process">Process my basket</a></li>
+                                        <li><a href="/mediadb/index.php?controller=Bag&action=index">Content</a></li>
+                                        <li><a href="/mediadb/index.php?controller=Bag&action=process">Process my basket</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         <?php endif; ?>
                     <?php endif; ?>
                     <?php if (!isset($_SESSION['user'])): ?>
-                        <form class="navbar-form navbar-right" method="post" action="/index.php?controller=User&action=login">
+                        <form class="navbar-form navbar-right" method="post" action="/mediadb/index.php?controller=User&action=login">
                             <div class="form-group">
                                 <input type="text" name="email" class="form-control" placeholder="Email">
                             </div>
@@ -69,7 +69,7 @@
                             <button type="submit" class="btn btn-default">Login</button>
                         </form>
                     <?php else: ?>
-                        <form class="navbar-form navbar-right" method="post" action="/index.php?controller=User&action=logout">
+                        <form class="navbar-form navbar-right" method="post" action="/mediadb/index.php?controller=User&action=logout">
                             <button type="submit" class="btn btn-default">Logout</button>
                         </form>
                     <?php endif; ?>

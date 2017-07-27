@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h3> Albums </h3>
+        <h3> My Album Basket </h3>
         <table  class="table table-responsive table-bordered">
             <thead>
                 <tr>
@@ -27,5 +27,9 @@
                <?php endforeach;?>
             </tbody>
         </table>
+    </div>
+    <div class="col-md-12">
+        <h3>Process My Basket</h3>
+        <a class="btn btn-default" href="/mediadb/index.php?id=<?= $data->bag['id']?>&controller=Bag&action=process">Process</a>
     </div>
 </div>
