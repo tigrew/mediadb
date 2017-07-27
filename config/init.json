@@ -1,0 +1,63 @@
+
+{
+    "current_app": "index",
+    "db_name": "mediadb",
+    "db_pass": "root",
+    "db_host": "localhost", 
+    "db_user": "root",
+    "controller_dir": "controller",
+    "library_dir": "library",
+    "model_dir": "model",
+    "view_dir": "view",
+    "credentials": [
+        {
+            "Controller": "User",
+            "Action": "add",
+            "UserType": "Admin"
+        },
+        {
+            "Controller": "User",
+            "Action": "edit",
+            "UserType": "Admin"
+        }, {
+            "Controller": "User",
+            "Action": "search",
+            "UserType": "Admin"
+        },
+        {
+            "Controller": "User",
+            "Action": "delete",
+            "UserType": "Admin"
+        },
+        {
+            "Controller": "User",
+            "Action": "index",
+            "UserType": "Admin"
+        },
+        {
+            "Controller": "User",
+            "Action": "login",
+            "UserType": "Admin|Customer|Artist|User"
+        },
+        {
+            "Controller": "Dashboard",
+            "Action": "index",
+            "UserType": "Admin|Customer|Artist|User"
+        },
+        {
+            "Controller": "User",
+            "Action": "logout",
+            "UserType": "Admin|Customer|Artist|User"
+        },
+        {
+            "Controller": "Bag",
+            "Action": "index",
+            "UserType": "Admin|Customer"
+        },
+        {
+            "Controller": "Bag",
+            "Action": "process",
+            "UserType": "Admin|Customer"
+        }
+    ]
+}
