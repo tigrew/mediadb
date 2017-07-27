@@ -35,30 +35,29 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <?php if (isset($_SESSION['user'])): ?>
-                        <?php if ($_SESSION['user']['Role_id'] == UserDb::_Admin): ?>
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/mediadb/index.php?controller=User&action=index">User Management</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        <?php endif; ?>
-                    <?php if ($_SESSION['user']['Role_id'] == UserDb::_Customer): ?>
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My basket <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/mediadb/index.php?controller=Bag&action=index">Content</a></li>
-                                        <li><a href="/mediadb/index.php?controller=Bag&action=process">Process my basket</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        <?php endif; ?>
+
+                    <?php if (Engine::IsUserHasRole(UserDb::_Admin)): ?>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/mediadb/index.php?controller=User&action=index">User Management</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     <?php endif; ?>
-                    <?php if (!isset($_SESSION['user'])): ?>
+                    <?php if (Engine::IsUserHasRole(UserDb::_Customer)): ?>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My basket <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/mediadb/index.php?controller=Bag&action=index">Content</a></li>
+                                    <li><a href="/mediadb/index.php?controller=Bag&action=process">Process my basket</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
+                    <?php if (!Engine::HasUser()): ?>
                         <form class="navbar-form navbar-right" method="post" action="/mediadb/index.php?controller=User&action=login">
                             <div class="form-group">
                                 <input type="text" name="email" class="form-control" placeholder="Email">

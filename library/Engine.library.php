@@ -51,4 +51,43 @@ Class Engine {
     public static function SetUser($user){
         $_SESSION['user'] = $user;
     }
+    /**
+     * @param type $controller
+     * @param type $action
+     * @return boolean
+     */
+    public static function isAuthorized( $controller, $action){
+        if(isset($_SESSION['user'])){
+            $role = Userdb::$roles[$_SESSION['user']['Role_id']];
+            return self::Credential($controller, $action, $role);
+        }
+        return false;
+    }
+    /**
+     * @param type $controller
+     * @param type $action
+     * @return boolean
+     */
+    public static function HasUser(){
+        if(isset($_SESSION['user'])){
+           return true;
+        }
+        return false;
+    }
+    /**
+     * @param type $controller
+     * @param type $action
+     * @return boolean
+     */
+    public static function IsUserHasRole($role){
+        if(isset($_SESSION['user'])){
+            if($_SESSION['user']['Role_id'] == $role){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    
 }
