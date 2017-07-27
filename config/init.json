@@ -2,9 +2,9 @@
 {
     "current_app": "index",
     "db_name": "mediadb",
-    "db_pass": "root",
+    "db_pass": "xbz333",
     "db_host": "localhost", 
-    "db_user": "root",
+    "db_user": "adminmedia",
     "controller_dir": "controller",
     "library_dir": "library",
     "model_dir": "model",
@@ -63,6 +63,12 @@
             "Controller": "Bag",
             "Action": "remove",
             "UserType": "Admin|Customer"
+        },
+        
+        {
+           "Controller":"Artist",
+           "Action": "show",
+           "UserType": "Admin|Customer|Artist|User"
         }
         
         
