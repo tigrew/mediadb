@@ -76,6 +76,12 @@ class DbBase {
             array($id , PDO::PARAM_INT)
         ));
     }
+    
+    public function findWithLimit($offset,$limit){
+           
+         return $this->fetchAll("SELECT * FROM $this->table LIMIT $offset , $limit");  
+    }
+    
     public function searchBy($field, $value){
         if($value[1] === PDO::PARAM_INT){
              return $this->fetchAll("SELECT * FROM $this->table WHERE $field = ? ", array(

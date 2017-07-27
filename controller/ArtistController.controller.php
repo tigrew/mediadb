@@ -22,9 +22,13 @@ class ArtistController extends Controller{
       
     }
     
-    function initView(){
+    
+    function show(){
         
-         return $artistDb->findAll();
+         $this->data->artists = $this->artistDb->findAll();
+         
+         
+         $this->getView("artist_index");
     }
     //put your code here
 }
