@@ -5,5 +5,8 @@
  *
  * @author ginomazzola
  */
-class AwardController {
+class AwardController extends Controller{
+    public function __construct() {
+        parent::__construct();
+    }
 }
