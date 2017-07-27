@@ -11,6 +11,20 @@
  *
  * @author ginomazzola
  */
-class ArtistController {
+class ArtistController extends Controller{
+    
+    private  $artistDb;
+    
+    
+    public function __construct() {
+        parent::__construct();
+        $this->artistDb = new ArtistDb();
+      
+    }
+    
+    function initView(){
+        
+         return $artistDb->findAll();
+    }
     //put your code here
 }
