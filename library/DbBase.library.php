@@ -34,7 +34,6 @@ class DbBase {
      * @param type $params
      */
     private function executeQuery($query = "",  $params = array()){
-       
         $this->statement = $this->dbh->prepare($query);
         $i = 1;
         foreach ($params as $key => $param){
@@ -88,7 +87,13 @@ class DbBase {
        
     }
     public function searchOneBy($field, $value){
-        return $this->fetch("SELECT * FROM $this->table WHERE $field = like '%?%' ", array(
+
+         if($value[1] === PDO::PARAM_INT){
+             return $this->fetch("SELECT * FROM $this->table WHERE $field = ? ", array(
+                $value
+            ));
+        }
+        return $this->fetch("SELECT * FROM $this->table WHERE $field like  ? ", array(
             $value
         ));
     }
