@@ -11,6 +11,25 @@
  *
  * @author ginomazzola
  */
-class AlbumController {
-    //put your code here
+class AlbumController extends Controller {
+    
+    private $albumDb;
+    /**
+     * 
+     */
+    public function __construct() {
+        parent::__construct();
+        $this->albumDb = new AlbumDb();
+        
+    }
+    /**
+     * 
+     */
+    public function index(){
+        $this->data->albums = $this->albumDb->findAll();
+        $this->getView("album_index");
+    }
+    
+    
+    
 }

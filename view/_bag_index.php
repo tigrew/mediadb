@@ -18,7 +18,7 @@
             <tbody>
                 <?php $empty = true; ?>
                 <?php foreach ($data->BagLines as $bagline): ?>
-                        <?php if ($bagline['id'] !== null) : ?>
+                    <?php if ($bagline['id'] !== null) : ?>
                         <tr>
                             <td><?= $bagline['title'] ?></td>
                             <td><?= $bagline['releasedate'] ?></td>
@@ -33,7 +33,9 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
                 <?php if ($empty === true) : ?>
-                     <?= $data->emptyResultMessage; ?>
+                    <div class="alert alert-warning">
+                        <?= $data->emptyResultMessage; ?>
+                    </div>
                 <?php endif; ?> 
             </tbody>
         </table>

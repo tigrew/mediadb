@@ -16,7 +16,9 @@ class UserController extends Controller{
         $this->userDb = new UserDb();
         $this->roleDb = new RoleDb();
     }
-    
+    /**
+     * 
+     */
     public function login(){
         
         if(isset($this->request['email']) && isset($this->request['password'])){
@@ -26,8 +28,8 @@ class UserController extends Controller{
            ));
            
            if(!empty($user)){
-               $_SESSION['user'] = $user;
-               $this->getView('index');
+               Engine::SetUser($user);
+               $this->route("Dashboard" , "index");
            }else{
                $this->data->message = "Wrong connection information";
                $this->getView('index');
@@ -35,22 +37,26 @@ class UserController extends Controller{
         }
         
     }
-    
+    /**
+     * 
+     */
     public function logout(){
-        unset($_SESSION['user']);
+        Engine::UnsetUser();
         $data = new stdClass();
         $data->message = "You are logged out";
         $this->route("Dashboard" , "index", $data);
         
     }
-
+    /**
+     * 
+     */
     public function index(){ 
        $this->initView();
        $this->getView('user_index');
     }
-    
-    
-    
+    /**
+     * 
+     */
     public function add(){ 
        
        if(isset($this->request['email']) 
@@ -74,8 +80,9 @@ class UserController extends Controller{
        $this->initView();
        $this->getView('user_index');
     }
-    
-    
+    /**
+     * 
+     */
      public function edit(){ 
        
        if(isset($this->request['id']) && isset($this->request['email']) && isset($this->request['role'])){
@@ -96,10 +103,10 @@ class UserController extends Controller{
           $this->initView(); 
           $this->getView('user_index');
        }
-       
-       
     }
-    
+    /**
+     * 
+     */
     public function search(){
         
         if(isset($this->request['email'])){
@@ -120,7 +127,9 @@ class UserController extends Controller{
         $this->getView("user_index");
         
     }
-    
+    /**
+     * 
+     */
     private function initView(){
         $this->data->users = $this->userDb->findAll();
         $this->data->roles = $this->roleDb->findAll();

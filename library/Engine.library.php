@@ -1,8 +1,15 @@
 <?php 
 
-
+/**
+ * 
+ */
 Class Engine {
-    
+    /**
+     * @param type $controller
+     * @param type $action
+     * @param type $role
+     * @return boolean
+     */
     public static function Credential($controller, $action, $role) {
         $credentials = Config::getInstance()->get('credentials');
         $RouteAuthorized = false;
@@ -15,6 +22,11 @@ Class Engine {
         }
         return $RouteAuthorized;
     }
+    /**
+     * @param type $controller
+     * @param string $action
+     * @param stdClass $data
+     */
     public static function Route($controller = "", $action = "", $data = array()) {
 
         if (isset($controller) && isset($action)) {
@@ -41,6 +53,9 @@ Class Engine {
             }
         }
     }
+    /**
+     * @return type
+     */
     public static function GetUser(){
         if(isset($_SESSION['user'])){
             return $_SESSION['user'];
@@ -48,8 +63,14 @@ Class Engine {
         return null;
         
     }
+    /**
+     * @param type $user
+     */
     public static function SetUser($user){
         $_SESSION['user'] = $user;
+    }
+     public static function UnsetUser(){
+        unset($_SESSION['user']);
     }
     /**
      * @param type $controller
@@ -87,7 +108,4 @@ Class Engine {
         }
         return false;
     }
-    
-    
-    
 }

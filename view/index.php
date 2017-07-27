@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/mediadb/index.php?controller=Dashboard&action=index">Music Space</a>
+                    <a class="navbar-brand" href="/mediadb/index.php?controller=Dashboard&action=index">Music Space <span class="glyphicon glyphicon-play"></span></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,6 +53,15 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="/mediadb/index.php?controller=Bag&action=index">Content</a></li>
                                     <li><a href="/mediadb/index.php?controller=Bag&action=process">Process my basket</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Albums<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/mediadb/index.php?controller=Album&action=index">List</a></li>
+                                    <li><a href="/mediadb/index.php?controller=Album&action=new">Post an Album</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -92,7 +101,7 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <h1>Music Space</h1>
+                <h1>Music Space <span class="glyphicon glyphicon-play"></span></h1>
 
                 <p></p>
 

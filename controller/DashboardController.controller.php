@@ -7,22 +7,29 @@
  */
 class DashboardController extends Controller{
     /**
+     * @var type 
+     */
+    private $albumDb;
+    /**
+     * 
+     */
+    public function __construct(){
+        parent::__construct();
+        $this->albumDb = new AlbumDb();
+    }
+    /**
      * 
      */
     public function index(){ 
-        
-       $this->data->bienvenue = "Bienvenue dans notre site";
-       $this->data->image_url = "url";
        
-       
-       
+       $this->data->albums = $this->albumDb->findAll();
        $this->getView('index');
     }
-    
+    /**
+     * 
+     */
     public function formsubmission(){
         $this->data->request = $this->request;
-        
-        
         $this->getView('index');
     }
 }

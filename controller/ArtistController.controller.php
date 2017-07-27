@@ -19,15 +19,11 @@ class ArtistController extends Controller{
     public function __construct() {
         parent::__construct();
         $this->artistDb = new ArtistDb();
-      
     }
     
     
     function show(){
-        
          $this->data->artists = $this->artistDb->findAll();
-         
-         
          $this->getView("artist_index");
     }
     //put your code here

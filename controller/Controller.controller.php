@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * 
+ */
 abstract class Controller {
     /**
      * @var type 
@@ -21,12 +23,7 @@ abstract class Controller {
      * 
      */
     public function __construct() {
-        
-    
-        
-        
         $this->request = $this->sanitizeRequest(array_merge($_GET, $_POST));
-        
         $this->data = new stdClass();
     }
 
@@ -54,11 +51,17 @@ abstract class Controller {
         }
         
     }
-    
+    /**
+     * @param type $data
+     */
     public function setData($data = null){
         $this->data = $data;
     }
-    
+    /**
+     * @param type $controler
+     * @param type $action
+     * @param type $data
+     */
     protected function route($controler = "", $action = "", $data = null){
         Engine::Route($controler, $action, $data);
     }
