@@ -2,9 +2,10 @@
 {
     "current_app": "index",
     "db_name": "mediadb",
-    "db_pass": "xbz333",
+    "db_pass": "root",
     "db_host": "localhost", 
-    "db_user": "adminmedia",
+    "db_user": "root",
+    "file_directory" : "/../public/",
     "controller_dir": "controller",
     "library_dir": "library",
     "model_dir": "model",
@@ -64,8 +65,46 @@
             "Action": "remove",
             "UserType": "Admin|Customer"
         },
-        
         {
+            "Controller": "Artist",
+            "Action": "show",
+            "UserType": "Admin|Customer"
+        },
+        {
+            "Controller": "Artist",
+            "Action": "biography",
+            "UserType": "Admin|Customer"
+        },
+        {
+            "Controller": "Album",
+            "Action": "index",
+            "UserType": "Admin|Customer|Artist"
+        },
+        {
+            "Controller": "Album",
+            "Action": "add",
+            "UserType": "Artist"
+        },
+        {
+            "Controller": "Album",
+            "Action": "view",
+            "UserType": "Customer"
+        },
+        {
+            "Controller": "Admin|Album",
+            "Action": "remove",
+            "UserType": "Admin|Customer"
+        },
+        {
+            "Controller": "Album",
+            "Action": "edit",
+            "UserType": "Artist"
+        },
+        {
+            "Controller": "Album",
+            "Action": "addBasket",
+            "UserType": "Admin|Customer|Artist"
+        }, {
            "Controller":"Artist",
            "Action": "show",
            "UserType": "Admin|Customer|Artist|User"
@@ -75,6 +114,8 @@
            "Action": "delete",
            "UserType": "Admin"
         }
+        
+        
         
         
     ]
