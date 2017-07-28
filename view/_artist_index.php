@@ -12,7 +12,7 @@
      <td><?= $artist['nickname'] ?></td>
      <td> <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=biography">Biographie</a>
         <?php if(Engine::isAuthorized("Artist", "delete")): ?> 
-    <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=delete">Supprimer</a></td>
+    <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=delete&offset=<?=$_GET['offset'] ?>&limit=25">Supprimer</a></td>
     <?php endif; ?>
      </tr>    
 <?php endforeach; ?>
