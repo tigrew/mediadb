@@ -23,8 +23,32 @@ class ArtistController extends Controller{
     
     
     function show(){
-         $this->data->artists = $this->artistDb->findAll();
-         $this->getView("artist_index");
+        
+        $this->refresh();
     }
-    //put your code here
+    
+    function delete(){
+            
+       if(isset($this->request['id'])){
+           $this->artistDb->delete($this->request['id']);
+       }   
+    
+        $this->refresh();
+    }
+    
+    
+    private function refresh(){
+        
+        
+         $this->data->artists = $this->artistDb->findWithLimitOrderBy(
+                 isset($this->request['offset']) ? $this->request['offset']*25 : 0, 
+                 isset ($this->request['limit']) ? ($this->request['limit']) : 25,
+                 'nickname'
+        );
+         
+         $this->data->numberpage = count($this->data->artists);
+ 
+         $this->getView("artist_index");
+        
+    }
 }
