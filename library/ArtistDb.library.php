@@ -18,7 +18,6 @@ class ArtistDb extends DbBase {
         parent::__construct('Artist');
     }
     
-    
-    
+     
     
 }

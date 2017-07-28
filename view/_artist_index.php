@@ -7,13 +7,15 @@
 
 
 <?php foreach ($data->artists as $artist): ?>
+    
+   
      <tr>
-     <td>TODO PICTURE</td>
+     <td><img src ="<?= !empty($artist['picture']) ? FileManager::GetFilePathForFront($artist['picture']) : FileManager::GetFilePathForFront("images/artist_default.jpg")?>" /></td>
      <td><?= $artist['nickname'] ?></td>
      <td> <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=biography">Biographie</a>
-        <?php if(Engine::isAuthorized("Artist", "delete")): ?> 
-    <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=delete&offset=<?=$_GET['offset'] ?>&limit=25">Supprimer</a></td>
-    <?php endif; ?>
+     <?php if(Engine::isAuthorized("Artist", "delete")): ?> 
+     <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=delete&offset=<?=$_GET['offset'] ?>&limit=25">Supprimer</a></td>
+     <?php endif; ?>
      </tr>    
 <?php endforeach; ?>
      

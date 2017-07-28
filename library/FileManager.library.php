@@ -83,6 +83,8 @@ class FileManager {
         return __DIR__.Config::getInstance()->get('file_directory').$file_name;
     }
             
-    
+     public static function GetFilePathForFront($file_name){
+        return Config::getInstance()->get('file_directory').$file_name;
+    }
 
 }
