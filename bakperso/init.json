@@ -2,7 +2,7 @@
 {
     "current_app": "index",
     "db_name": "mediadb",
-    "db_pass": "xbz333",
+    "db_pass": "xbz333",   
     "db_host": "localhost", 
     "db_user": "adminmedia",
     "controller_dir": "controller",
@@ -58,24 +58,10 @@
             "Controller": "Bag",
             "Action": "process",
             "UserType": "Admin|Customer"
-        },
-        {
-            "Controller": "Bag",
-            "Action": "remove",
-            "UserType": "Admin|Customer"
-        },
-        
-        {
+        },{
            "Controller":"Artist",
            "Action": "show",
            "UserType": "Admin|Customer|Artist|User"
-        },
-         {
-           "Controller":"Artist",
-           "Action": "delete",
-           "UserType": "Admin"
         }
-        
-        
     ]
 }

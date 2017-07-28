@@ -23,6 +23,7 @@ abstract class Controller {
      * 
      */
     public function __construct() {
+        
         $this->request = $this->sanitizeRequest(array_merge($_GET, $_POST));
         $this->data = new stdClass();
     }
@@ -55,6 +56,9 @@ abstract class Controller {
      * @param type $data
      */
     public function setData($data = null){
+        if($data === null){
+            $data = new stdClass();
+        }
         $this->data = $data;
     }
     /**

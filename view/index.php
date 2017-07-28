@@ -72,7 +72,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artists<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/mediadb/index.php?controller=Artist&action=show">Show</a></li>                          
+                                    <li><a href="/mediadb/index.php?controller=Artist&action=show&offset=1&limit=25">Show</a></li>                          
                                 </ul>
                             </li>
                         </ul>

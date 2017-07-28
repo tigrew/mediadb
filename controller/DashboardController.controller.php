@@ -21,8 +21,15 @@ class DashboardController extends Controller{
      * 
      */
     public function index(){ 
-       
-       $this->data->albums = $this->albumDb->findAll();
+        
+        $list = $this->albumDb->findAll();
+        if(!empty($list) && !is_null($list)){
+            
+            $this->data->albums = $list;
+            
+        }else{
+            $this->data->albums = array();
+        }
        $this->getView('index');
     }
     /**
