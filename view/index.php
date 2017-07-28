@@ -46,7 +46,7 @@
                             </li>
                         </ul>
                     <?php endif; ?>
-                    <?php if (Engine::IsUserHasRole(UserDb::_Customer)): ?>
+                    <?php if (Engine::isAuthorized("Album", "index")): ?>
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My basket <span class="caret"></span></a>
