@@ -136,9 +136,10 @@ class DbBase {
             }
         }
         try{
+            echo $insertQuery;
              $this->execute($insertQuery, $params);
         } catch (PDOException $ex) {
-            die($ex->getMessage());
+            echo $ex->getMessage();
         }
        
     }
