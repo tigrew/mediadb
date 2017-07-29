@@ -27,7 +27,7 @@ Class Engine {
      * @param string $action
      * @param stdClass $data
      */
-    public static function Route($controller = "", $action = "", $data = array()) {
+    public static function Route($controller = "", $action = "", stdClass $data , $request = array()) {
 
         if (isset($controller) && isset($action)) {
             
@@ -41,6 +41,7 @@ Class Engine {
                 $controlerClass = $controller . "Controller";
                 $controler = new $controlerClass();
                 $controler->setData($data);
+                $controler->setRequest($request);
                 $controler->$action();
             } else {
                 $controlerClass = "DashboardController";

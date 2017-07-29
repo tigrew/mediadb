@@ -12,5 +12,12 @@
  * @author ginomazzola
  */
 class SongDb extends DbBase {
-    //put your code here
+    public function __construct() {
+        parent::__construct("song");
+    }
+    public function findAllByAlbumId($albumId = 0){
+        return $this->fetchAll("SELECT * FROM song WHERE Album_id = ? ", array(
+            array($albumId, PDO::PARAM_INT)
+        ));
+    }
 }

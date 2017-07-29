@@ -23,18 +23,13 @@ abstract class Controller {
      * 
      */
     public function __construct() {
-        
-        $this->request = $this->sanitizeRequest(array_merge($_GET, $_POST));
+        $this->request = $_REQUEST;
+        //array_walk($this->request, 'self::sanitizeRequest');
         $this->data = new stdClass();
     }
 
-    private function sanitizeRequest($request) {
-        $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($request));
-        $result = array();
-        foreach ($iterator as $key => $value) {
-            $result[$key] = filter_var($value, FILTER_SANITIZE_STRING);
-        }
-        return $result;
+    protected function sanitizeRequest(&$item1, $key) {
+        $item1 = filter_var($item1, FILTER_SANITIZE_STRING);
     }
     /**
      * @param string $name
@@ -61,12 +56,21 @@ abstract class Controller {
         }
         $this->data = $data;
     }
+    
+    /**
+     * @param type $data
+     */
+    public function setRequest($request = null){
+        $this->request = array_merge($this->request, $request);
+    }
+    
+    
     /**
      * @param type $controler
      * @param type $action
      * @param type $data
      */
-    protected function route($controler = "", $action = "", $data = null){
-        Engine::Route($controler, $action, $data);
+    protected function route($controler = "", $action = "", stdClass $data , $request = array() ){
+        Engine::Route($controler, $action, $data, $request );
     }
 }

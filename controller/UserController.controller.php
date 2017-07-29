@@ -29,7 +29,7 @@ class UserController extends Controller{
            
            if(!empty($user)){
                Engine::SetUser($user);
-               $this->route("Dashboard" , "index");
+               $this->route("Dashboard" , "index", new stdClass());
            }else{
                $this->data->message = "Wrong connection information";
                $this->getView('index');

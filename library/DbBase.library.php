@@ -120,6 +120,7 @@ class DbBase {
             }
         }
         $updateQuery.= " WHERE id = ? ";
+        
         $params[] = array($id, PDO::PARAM_INT);
         $this->execute($updateQuery, $params);
     }

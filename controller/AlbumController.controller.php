@@ -14,13 +14,19 @@
 class AlbumController extends Controller {
 
     private $albumDb;
+    private $categoriesDb;
+    private $songDb;
 
     /**
      * 
      */
     public function __construct() {
         parent::__construct();
+        
         $this->albumDb = new AlbumDb();
+        $this->categoriesDb = new CategoryDb();
+        $this->songDb = new SongDb();
+        
     }
 
     /**
@@ -28,6 +34,7 @@ class AlbumController extends Controller {
      */
     public function index() {
         $this->data->albums = $this->albumDb->findAll();
+        // proper_debug($this->data->albums);
         $this->getView("album_index");
     }
 
@@ -38,34 +45,66 @@ class AlbumController extends Controller {
      * 
      */
     public function edit() {
+        
+        
+        $this->data->categories = $this->categoriesDb->findAll();
+        $this->data->songs = $this->songDb->findAllByAlbumId($this->request['id']);
+        $album = $this->albumDb->findById($this->request['id']);
+        $this->data->selectedCategories = $this->categoriesDb->findByAlbumId($this->request['id']);
 
-        if (isset($this->request['submit'])) {
-
-            $album = $this->request;
+        
+        
+        if (isset($this->request['submit']) ) {
+            
             $cover = FileManager::SaveFile("cover");
-            if(Engine::HasUser()){
-            
-                if (($cover['file'] !== false) && ( !empty($album))) {
-                    
-                    $this->albumDb->insert(array(
-                        
-                        'title'       => array($album['title'], PDO::PARAM_STR),
-                        'releasedate' => array($album['releasedate'], PDO::PARAM_STR),
-                        'numbersong'  => array($album['numbersong'], PDO::PARAM_INT),
-                        'stock'       => array($album['stock'], PDO::PARAM_INT),
-                        'price'        => array($album['price'], PDO::PARAM_INT),
-                        'cover'        => array($cover['file'], PDO::PARAM_STR),
-                        'Artist_id'   => array(Engine::GetUser()['id'] , PDO::PARAM_STR)
-                        
-                    ));
-                     $this->data->message = "New album added";
-                } else {
-                    $this->data->message = $cover['message'];
+
+            if(isset($this->request['id'])){
+                
+                
+                if($cover['file'] === false ){
+                    $cover['file'] = $album['cover'];
                 }
-            
+                $this->albumDb->save($this->request, $cover, $this->request['id']);
+                
+                $this->data->message = 'Album Edited With Success';
+                $this->data->album = $this->request;
+                $this->data->album['cover'] = $cover['file'];
+                $this->data->selectedCategories = $this->categoriesDb->findByAlbumId($this->request['id']);
+                
+            }else{
+                if($cover['file'] === false ){
+                    $this->data->message = $cover['message'];
+                    $this->data->album = $this->request;
+                }else{
+                    // INSERT
+                    $this->albumDb->save($this->request, $cover);
+                    $this->data->message = 'Album Created With Success';
+                }
             }
-        }
+        }else{
+            
+            $this->data->album = $album;
+            
+            
+        }  
         $this->getView("album_add");
     }
-
+    
+    public function addSong(){
+        if(isset($this->request['id'])){
+          
+            if(isset($this->request['Add'])){
+                
+                $this->songDb->insert(array(
+                    'title' => array($this->request['title'], PDO::PARAM_STR),
+                    'duration' => array($this->request['duration'], PDO::PARAM_INT),
+                    'Album_id' => array($this->request['id'], PDO::PARAM_INT)
+                ));
+            }   
+        }
+        $this->route("Album" , "edit", new stdClass(), $this->request);
+    }
+    
+    
+    
 }

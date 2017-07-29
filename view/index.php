@@ -1,7 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="/public/appli.css">
-        <link rel="stylesheet" href="/public/jquery.dataTables.min.css">
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -11,10 +10,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script type="text/javascript" language="javascript" src="/public/jquery.dataTables.js">
-        </script>
-        <script type="text/javascript" language="javascript" src="/public/jquery.dataTables.js">
-        </script>
+       
+     
         <style>
             img.logo{float:left; position: relative; height: 80px; padding:10px;}
         </style>
@@ -61,7 +58,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Albums<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/mediadb/index.php?controller=Album&action=index">List</a></li>
-                                    <li><a href="/mediadb/index.php?controller=Album&action=new">Post an Album</a></li>
+                                    <li><a href="/mediadb/index.php?controller=Album&action=add">Post an Album</a></li>
                                 </ul>
                             </li>
                         </ul>

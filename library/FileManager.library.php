@@ -19,9 +19,10 @@ class FileManager {
      */
     Public static function SaveFile($name = "") {
        
-        $target_dir = __DIR__.$target_dir;
+        $target_dir = __DIR__.Config::getInstance()->get('file_directory').$target_dir;
         $message = "";
-        $target_file = $target_dir . basename($_FILES[$name]["name"]);
+        $basename = uniqid() . basename($_FILES[$name]["name"]);
+        $target_file = $target_dir . $basename;
         
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -61,8 +62,8 @@ class FileManager {
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_file)) {
-                $message .= "The file " . basename($_FILES[$name]["name"]) . " has been uploaded.";
-                $target_file = basename($_FILES[$name]["name"]);
+                $message .= "The file " . $basename . " has been uploaded.";
+                $target_file = $basename;
             } else {
                 $message .= "Sorry, there was an error uploading your file.";
                 $target_file = false;
@@ -85,6 +86,13 @@ class FileManager {
             
      public static function GetFilePathForFront($file_name){
         return Config::getInstance()->get('file_directory').$file_name;
+    }
+    
+    public static function isRequestHasFile($inputName = ""){
+        if($_FILES[$inputName]['name'] !== ""){
+            return true;
+        }
+        return false;
     }
 
 }
