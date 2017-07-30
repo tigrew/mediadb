@@ -1,6 +1,6 @@
 <html>
     <head>
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -10,11 +10,26 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-       
-     
+
+
         <style>
-            img.logo{float:left; position: relative; height: 80px; padding:10px;}
+
+            img:hover {
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transform:translateZ(0) scale(1.5); /* Safari and Chrome */
+                -moz-transform:scale(1.5); /* Firefox */
+                -ms-transform:scale(1.5); /* IE 9 */
+                -o-transform:translatZ(0) scale(1.5); /* Opera */
+                transform:translatZ(0) scale(1.5);
+
+            }
+            img{
+                z-index: 99999999999999;
+            }
+
         </style>
+
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -63,18 +78,18 @@
                             </li>
                         </ul>
                     <?php endif; ?>
-                    
-                 
-                       <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artists<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="/mediadb/index.php?controller=Artist&action=show&offset=1&limit=25">Show</a></li>                          
-                                </ul>
-                            </li>
-                        </ul>
-               
-                    
+
+
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artists<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/mediadb/index.php?controller=Artist&action=show&offset=1&limit=25">Show</a></li>                          
+                            </ul>
+                        </li>
+                    </ul>
+
+
                     <?php if (!Engine::HasUser()): ?>
                         <form class="navbar-form navbar-right" method="post" action="/mediadb/index.php?controller=User&action=login">
                             <div class="form-group">

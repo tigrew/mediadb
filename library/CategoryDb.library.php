@@ -48,7 +48,7 @@ class CategoryDb extends DbBase {
         }else{
             $queryInsert.= "( ? , ?)";
             $params[] = array($albumId, PDO::PARAM_INT);
-            $params[] = array($c, PDO::PARAM_INT);
+            $params[] = array($categories[0], PDO::PARAM_INT);
         }
         $this->execute($queryInsert , $params);
     }

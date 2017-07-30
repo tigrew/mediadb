@@ -45,21 +45,23 @@ class AlbumController extends Controller {
      * 
      */
     public function edit() {
-        
-        
+      
         $this->data->categories = $this->categoriesDb->findAll();
         $this->data->songs = $this->songDb->findAllByAlbumId($this->request['id']);
         $album = $this->albumDb->findById($this->request['id']);
         $this->data->selectedCategories = $this->categoriesDb->findByAlbumId($this->request['id']);
 
         
-        
+            
         if (isset($this->request['submit']) ) {
             
             $cover = FileManager::SaveFile("cover");
 
             if(isset($this->request['id']) && $this->request['id'] !== null){
                 
+                if(IsArtistAlbum::Helper($this->request['id'])){
+                   
+                }
                 
                 if($cover['file'] === false ){
                     $cover['file'] = $album['cover'];

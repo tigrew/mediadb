@@ -63,8 +63,14 @@ class AlbumDb extends DbBase {
         ));
         $this->categoryDb->batchSave($id , $album['categories']);
         return $id;
+    }
+    public function isArtistAlbum($albumId){
         
-         
+        $album = $this->fetch("SELECT * FROM Album WHERE Artist_id = ? AND id = ? ", array(
+            array(Engine::GetUser()['id'], PDO::PARAM_INT),
+            array($albumId, PDO::PARAM_INT)
+        ));
+        return is_array($album);
     }
     
     

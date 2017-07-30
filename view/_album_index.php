@@ -34,7 +34,7 @@
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=remove"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                 <?php endif; ?>
                                 
-                                <?php if(Engine::isAuthorized("Album", "edit")): ?>
+                                <?php if(Engine::isAuthorized("Album", "edit") && IsArtistAlbum::Helper($bagline[0])) : ?>
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=edit"><span class="glyphicon glyphicon-edit"></span></a>
                                 <?php endif; ?> 
                                     

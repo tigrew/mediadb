@@ -1,3 +1,10 @@
+<style>
+
+
+  
+  
+</style>
+
 <div class="row">
     <form class="form" method="post" enctype="multipart/form-data" action="/mediadb/index.php?<?= (isset($request['id']))?'id='.$request['id'].'&' : ''?>controller=Album&action=edit">
         <h3>Album</h3>    
@@ -18,7 +25,7 @@
                     <div class="input-group-addon">
                         Album title
                     </div>
-                    <input class="form-control" value="<?= ($data->album['title']) ? $data->album['title'] : ''; ?>" id="title" name="title" placeholder="Title" type="text"/>
+                    <input required class="form-control" value="<?= ($data->album['title']) ? $data->album['title'] : ''; ?>" id="title" name="title" placeholder="Title" type="text"/>
                 </div>
             </div>
             <div class="form-group ">
@@ -28,7 +35,7 @@
                         *
                     </span>
                 </label>
-                <input class="form-control" id="date" value="<?= ($data->album['releasedate']) ? $data->album['releasedate'] : ''; ?>" name="releasedate" placeholder="DD/MM/YYYY" type="date"/>
+                <input required class="form-control" id="date" value="<?= ($data->album['releasedate']) ? $data->album['releasedate'] : ''; ?>" name="releasedate" placeholder="DD/MM/YYYY" type="date"/>
             </div>
             <div class="form-group ">
                 <label class="control-label " for="text">
@@ -43,7 +50,7 @@
                         *
                     </span>
                 </label>
-                <input class="form-control" value="<?= ($data->album['stock']) ? $data->album['stock'] : ''; ?>" id="number" name="stock" type="number"/>
+                <input required class="form-control" value="<?= ($data->album['stock']) ? $data->album['stock'] : ''; ?>" id="number" name="stock" type="number"/>
             </div>
             <div class="form-group ">
                 <label class="control-label requiredField" for="price">
@@ -52,7 +59,7 @@
                         *
                     </span>
                 </label>
-                <input class="form-control" value="<?= ($data->album['price']) ? $data->album['price'] : ''; ?>" id="price" name="price" placeholder="€" type="number"/>
+                <input required class="form-control" value="<?= ($data->album['price']) ? $data->album['price'] : ''; ?>" id="price" name="price" placeholder="€" type="number"/>
             </div>
 
             <div class="form-group">
@@ -78,7 +85,7 @@
                     </span>
                 </label>
                 <div class="input-group-addon">
-                    <img src="public/<?= ($data->album['cover']) ? $data->album['cover'] : ''; ?>"  class="img-thumbnail"   width="200" height="150"> 
+                    <img src="public/<?= ($data->album['cover']) ? $data->album['cover'] : ''; ?>"  class="img-thumbnail grayscale"   width="200" height="150"> 
                 </div>
                 <input type="file" name="cover" id="fileToUpload">            
             </div>
@@ -123,10 +130,6 @@
         </div>
     <?php endif; ?>
 </div>
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -161,7 +164,5 @@
             </div>
         </form>
     </div>
-                
-
   </div>
 </div>
