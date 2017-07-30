@@ -18,9 +18,12 @@ class Config {
     */
    private function __construct() {  
        
-       $preconfig =  __DIR__.'/../config/init.json';
-       $contents = file_get_contents($preconfig); 
+      $preconfig =  __DIR__.'/../config/init.json';
+      
        
+   
+       $contents = file_get_contents($preconfig); 
+    
        $preconfig = json_decode($contents, true);
        
       
@@ -45,6 +48,12 @@ class Config {
    }
    
    public function get($key = ""){
+       
+       if(is_null($this->config[$key]) || empty($this->config[$key])){
+           
+           throw new ErrorException("the key has not been set properly in init.json");
+           
+       }
       return $this->config[$key];
    }
    

@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-juil.-2017, 17:42:19
+    Author     : lio
+*/
+
+.biography-edit{
+    
+    height:100%;
+    width:100%;
+    margin-bottom: 10px;
+    
+}
+
+ img:hover {
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                -webkit-transform:translateZ(0) scale(1.5); /* Safari and Chrome */
+                -moz-transform:scale(1.5); /* Firefox */
+                -ms-transform:scale(1.5); /* IE 9 */
+                -o-transform:translatZ(0) scale(1.5); /* Opera */
+                transform:translatZ(0) scale(1.5);
+
+            }
+img{
+    z-index: 99999999999999;
+  }

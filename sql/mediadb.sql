@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS `mediadb`.`Artist` (
   `birthplace` VARCHAR(45) NULL,
   `biography` TEXT NULL,
   `picture` VARCHAR(255) NULL,
-  `website` VARCHAR(2083) NULL,
+  `website` TEXT NULL,
+  `User_id` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -176,11 +177,18 @@ CREATE TABLE IF NOT EXISTS `mediadb`.`User` (
   `password` VARCHAR(45) NOT NULL,
   `mail` VARCHAR(45) NULL,
   `Role_id` INT NOT NULL,
+  `Artist_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_User_Role1_idx` (`Role_id` ASC),
   CONSTRAINT `fk_User_Role1`
     FOREIGN KEY (`Role_id`)
     REFERENCES `mediadb`.`Role` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+ INDEX `fk_User_Artist1_idx` (`Artist_id` ASC),
+  CONSTRAINT `fk_User_Artist1`
+    FOREIGN KEY (`Artist_id`)
+    REFERENCES `mediadb`.`Artist` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

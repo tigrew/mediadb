@@ -11,6 +11,8 @@ Class Engine {
      * @return boolean
      */
     public static function Credential($controller, $action, $role) {
+        
+        
         $credentials = Config::getInstance()->get('credentials');
         $RouteAuthorized = false;
         foreach ($credentials as $c) {
@@ -84,6 +86,18 @@ Class Engine {
             return self::Credential($controller, $action, $role);
         }
         return false;
+    }
+    
+    public static function isLoggedUserWithId($id){
+        
+         if(isset($_SESSION['user'])){
+            $idSession = $_SESSION['user']['id'];
+            
+            return $id == $idSession ;
+        }
+        
+        return false;
+        
     }
     /**
      * @param type $controller

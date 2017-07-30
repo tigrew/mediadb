@@ -10,9 +10,9 @@
     
    
      <tr>
-     <td><img src ="<?= !empty($artist['picture']) ? FileManager::GetFilePathForFront($artist['picture']) : FileManager::GetFilePathForFront("images/artist_default.jpg")?>" /></td>
+     <td><img src ="<?= !empty($artist['picture']) ? ImageUtil::getImage($artist['picture'],true) :  ImageUtil::getDefaultImage("artist",true)?>" /></td>
      <td><?= $artist['nickname'] ?></td>
-     <td> <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=biography">Biographie</a>
+     <td> <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=ArtistDetail&action=biography">Biographie</a>
      <?php if(Engine::isAuthorized("Artist", "delete")): ?> 
      <a href="/mediadb/index.php?id=<?= $artist['id'] ?>&controller=Artist&action=delete&offset=<?=$_GET['offset'] ?>&limit=25">Supprimer</a></td>
      <?php endif; ?>

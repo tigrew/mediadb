@@ -13,19 +13,73 @@
  */
 class FileManager {
 
-
+      const resized = "images/resized/";
+      const real = "images/real/";
+    
+    public static function DeleteImage($name =""){
+        
+        $target_dir = getcwd().DIRECTORY_SEPARATOR.Config::getInstance()->get('file_directory');
+      
+        $target_dir_resized = $target_dir.self::resized;
+   
+        $target_dir_real = $target_dir.self::real;
+        
+        $message ="images supprimées";
+        
+        try{
+        if(file_exists($target_dir_real.$name)){
+            
+             if (!unlink ($target_dir_real.$name)){
+                 
+                      throw new ErrorException("Unable to delete the real image ".$name);
+                   }
+            
+        }
+        
+          if(file_exists($target_dir_resized.$name)){
+            
+             if (!unlink ($target_dir_resized.$name)){
+                      throw new ErrorException("Unable to delete the resized image ".$name);
+                   }
+            
+        }
+        
+        }catch(ErrorException $ex){
+            
+            $message ="un problème est survenu lors de la suppression des images";
+        }
+        
+        
+        return array( 'message' => $message , 'file' => $name) ;
+        
+    }
+    
+      
     /**
      * @param type $path
      */
-    Public static function SaveFile($name = "") {
-       
-        $target_dir = __DIR__.Config::getInstance()->get('file_directory').$target_dir;
-        $message = "";
-        $basename = uniqid() . basename($_FILES[$name]["name"]);
-        $target_file = $target_dir . $basename;
+    public static function SaveImage($name = "",$newidth,$newheight) {
         
+       
+       
+        $target_dir = getcwd().DIRECTORY_SEPARATOR.Config::getInstance()->get('file_directory');
+    
+     
+        $target_dir_resized = $target_dir.self::resized;
+   
+        $target_dir_real = $target_dir.self::real;
+ 
+        $message = "";
+     
+        if(!isset($_FILES[$name])){
+            
+            return array( 'message' => "Image not uploaded" , 'file' => false) ;
+        }
+        
+        $basename = uniqid() . basename($_FILES[$name]["name"]);
+          
         $uploadOk = 1;
-        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        $imageFileType = pathinfo($basename, PATHINFO_EXTENSION);
         
         
         $check = getimagesize($_FILES[$name]["tmp_name"]);
@@ -35,38 +89,59 @@ class FileManager {
             $uploadOk = 1;
         } else {
             $message .= "File is not an image.";
-            $uploadOk = 0;
+            return array( 'message' => $message , 'file' => false) ;
         }
         
         // Check if file already exists
-        if (file_exists($target_file)) {
+        if (file_exists($target_dir.$basename)) {
+            
+           
             $message .= "Sorry, file already exists.";
-            $uploadOk = 0;
+            return array( 'message' => $message , 'file' => false) ;
+          
         }
         // Check file size
         if ($_FILES[$name]["size"] > 500000) {
             $message .= "Sorry, your file is too large.";
-            $uploadOk = 0;
+            return array( 'message' => $message , 'file' => false) ;
         }
         // Allow certain file formats
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
             $message .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
+            return array( 'message' => $message , 'file' => false) ;
         }
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             $message .= "Sorry, your file was not uploaded.";
-            $target_file = false;
+            return array( 'message' => $message , 'file' => false) ;
             
             
             // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_file)) {
-                $message .= "The file " . $basename . " has been uploaded.";
-                $target_file = $basename;
+            
+            
+            if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_dir_real.$basename)) {
+                
+                 $message .= "The file " . $basename . " has been uploaded ";
+               // if we want a  resized copy of the image 
+              if($newidth > 0 && $newheight > 0){
+                  
+                 $dst = ImageUtil::resizeImage($target_dir_real.$basename,$newidth,$newheight);
+                 // if fail try to delete real image
+                 if(!imagepng($dst,$target_dir_resized.$basename)){
+                     
+                      if (!unlink ($target_dir_real.$basename)){
+                          throw new ErrorException("Unable to delete the real image after image resize operation failed.");
+                      }
+                 }
+                  
+              }
+                
+               
+       
             } else {
                 $message .= "Sorry, there was an error uploading your file.";
-                $target_file = false;
+                return array( 'message' => $message , 'file' => $basename) ;
             }
         }
         /** 
@@ -77,15 +152,19 @@ class FileManager {
          * @var message  upload error messages || upload success messages
          * 
          */
-        return array( 'message' => $message , 'file' => $target_file) ;
+        return array( 'message' => $message , 'file' => $basename) ;
     }
     
     public static function GetFilePath($file_name){
-        return __DIR__.Config::getInstance()->get('file_directory').$file_name;
+        return getcwd().DIRECTORY_SEPARATOR.Config::getInstance()->get('file_directory').$file_name;
     }
             
      public static function GetFilePathForFront($file_name){
+         
+         
         return Config::getInstance()->get('file_directory').$file_name;
+        
+        
     }
     
     public static function isRequestHasFile($inputName = ""){
@@ -93,6 +172,18 @@ class FileManager {
             return true;
         }
         return false;
+    }
+    
+    public static function removeExtension($file_name){
+        
+        
+        return substr($file_name,0,strrpos("."));
+        
+    }
+    
+    public static function getExtension($file_name){
+        
+        return substr($file_name,strrpos($file_name,".")+1,strlen($file_name));
     }
 
 }

@@ -10,26 +10,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./public/styles.css">
 
-
-        <style>
-
-            img:hover {
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
-                -webkit-transform:translateZ(0) scale(1.5); /* Safari and Chrome */
-                -moz-transform:scale(1.5); /* Firefox */
-                -ms-transform:scale(1.5); /* IE 9 */
-                -o-transform:translatZ(0) scale(1.5); /* Opera */
-                transform:translatZ(0) scale(1.5);
-
-            }
-            img{
-                z-index: 99999999999999;
-            }
-
-        </style>
-
+      
     </head>
     <body>
         <nav class="navbar navbar-default">

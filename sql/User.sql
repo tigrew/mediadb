@@ -8,6 +8,6 @@
  * Created: 27 juil. 2017
  */
 
-insert into User (password,mail,Role_id) values ('lio','lionel.timmerman@gmail.com',1);
-insert into User (password,mail,Role_id) values ('user','customer1@mail.com',2);
-insert into User (password,mail,Role_id) values ('lio','artist1@mail.com',3);
+insert into User (password,mail,Role_id) values ('lio','admin@mail.com',1);
+insert into User (password,mail,Role_id) values ('artist','artist1@mail.com',2);
+insert into User (password,mail,Role_id) values ('customer','customer1@mail.com',3);

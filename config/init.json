@@ -114,6 +114,18 @@
            "Controller":"Artist",
            "Action": "delete",
            "UserType": "Admin"
+        },{
+           "Controller":"ArtistDetail",
+           "Action": "biography",
+           "UserType": "Admin|Customer|Artist|User"
+        },{
+           "Controller":"ArtistDetail",
+           "Action": "edit",
+           "UserType": "Artist"
+        },{
+           "Controller":"ArtistDetail",
+           "Action": "update",
+           "UserType": "Artist"
         }
         
         
