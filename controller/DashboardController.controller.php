@@ -30,6 +30,9 @@ class DashboardController extends Controller{
         }else{
             $this->data->albums = array();
         }
+        if(isset($this->request['message'])){
+            $this->data->message = $this->request['message'];
+        }
        $this->getView('index');
     }
     /**

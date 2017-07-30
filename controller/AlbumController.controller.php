@@ -125,6 +125,35 @@ class AlbumController extends Controller {
          }
     }
     
-    
+    public function removeSong(){
+        if(isset($this->request['id']) && isset($this->request['album_id'])){
+            $this->songDb->delete($this->request['id']);
+            $this->redirect(
+                    array( 
+                        "controller" =>"Album",
+                        "action"  => "edit",
+                        "params" => array(
+                            'id' => $this->request['album_id']
+                        )
+                    )
+            );
+           
+        }
+    }
+    public function remove(){
+        if(isset($this->request['id'])){
+            $this->albumDb->remove($this->request['id']);
+            $this->redirect(
+                    array( 
+                        "controller" =>"Dashboard",
+                        "action"  => "index",
+                        "params" => array(
+                            'message'=>'Album removed'
+                        )
+                    )
+            );
+           
+        }
+    }
     
 }

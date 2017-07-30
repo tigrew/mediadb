@@ -29,18 +29,17 @@
                             <td>
                                 <?php if(Engine::isAuthorized("Album", "view")): ?>
                                 <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=view"><span class="glyphicon glyphicon-search"></span></a>
-                                <?php endif; ?>    
-                                <?php if(Engine::isAuthorized("Album", "remove")): ?> 
-                                    <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=remove"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                 <?php endif; ?>
                                 
                                 <?php if(Engine::isAuthorized("Album", "edit") && IsArtistAlbum::Helper($bagline[0])) : ?>
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=edit"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=remove"><span class="glyphicon glyphicon-remove"></span></a>
                                 <?php endif; ?> 
                                     
                                  <?php if(Engine::isAuthorized("Bag", "addBasket")): ?> 
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=addBasket"><span class="glyphicon glyphicon-download-alt"></span></a>
-                                <?php endif; ?>
+                                
+                                 <?php endif; ?>
                             </td>
                         </tr>
                 <?php endforeach; ?>

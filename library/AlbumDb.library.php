@@ -14,9 +14,11 @@
 class AlbumDb extends DbBase {
     
     private $categoryDb;
+    private $songDb;
     public function __construct() {
         parent::__construct('Album');
         $this->categoryDb = new CategoryDb();
+        $this->songDb = new SongDb();
     }
     public function findAll() {
          return $this->fetchAll(" SELECT * FROM $this->table "
@@ -71,6 +73,15 @@ class AlbumDb extends DbBase {
             array($albumId, PDO::PARAM_INT)
         ));
         return is_array($album);
+    }
+    
+    public function remove($idAlbum){
+        // supprimer les catégories l'album
+        $this->categoryDb->batchDelete($idAlbum);
+        // supprimer les sons de l'album
+        $this->songDb->batchDelete($idAlbum);
+        // supprimer l'album
+        $this->delete($idAlbum);
     }
     
     

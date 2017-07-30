@@ -21,6 +21,12 @@ class CategoryDb extends DbBase {
         $albumCategories = new DbBase('Album_has_Category');
         return $albumCategories->searchBy('Album_id', array($albumId, PDO::PARAM_INT));
     }
+    public function batchDelete($albumId){
+        $this->execute("DELETE FROM Album_has_Category WHERE Album_id = ? ", array(
+            array($albumId , PDO::PARAM_INT)
+        ));
+        
+    }
     public function batchSave($albumId = 0 , $categories){
         
         $this->execute("DELETE FROM Album_has_Category WHERE Album_id = ? ", array(

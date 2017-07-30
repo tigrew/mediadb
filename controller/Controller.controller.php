@@ -83,8 +83,9 @@ abstract class Controller {
             foreach($params['params'] as $key => $value){
                 $extra.="&".$key."=".$value;
             }
-            
-            header("Location: http://$host$uri/$extra");
+            echo '<script type="text/javascript">
+                    window.location = "http://'.$host.$uri.'/'.$extra.'";
+                  </script>';
             exit;
     }
 }

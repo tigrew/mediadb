@@ -20,4 +20,10 @@ class SongDb extends DbBase {
             array($albumId, PDO::PARAM_INT)
         ));
     }
+    public function batchDelete($albumId = 0){
+       $this->execute("DELETE FROM $this->table WHERE Album_id = ? ", array(
+            array($albumId , PDO::PARAM_INT)
+        ));
+    }
+    
 }
