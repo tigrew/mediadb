@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -58,7 +58,7 @@ class AlbumController extends Controller {
             
             $cover = FileManager::SaveFile("cover");
 
-            if(isset($this->request['id'])){
+            if(isset($this->request['id']) && $this->request['id'] !== null){
                 
                 
                 if($cover['file'] === false ){
@@ -77,8 +77,16 @@ class AlbumController extends Controller {
                     $this->data->album = $this->request;
                 }else{
                     // INSERT
-                    $this->albumDb->save($this->request, $cover);
+                    $this->request['id'] = $this->albumDb->save($this->request, $cover);
+                    
                     $this->data->message = 'Album Created With Success';
+                    $this->redirect(array(
+                        'controller' => 'Album',
+                        'action' => 'edit',
+                        'params' => array(
+                            'id' => $this->request['id']
+                        )
+                    ));
                 }
             }
         }else{
@@ -103,6 +111,16 @@ class AlbumController extends Controller {
             }   
         }
         $this->route("Album" , "edit", new stdClass(), $this->request);
+    }
+    public function view(){
+         if(isset($this->request['id'])){
+                $this->data->album = $this->albumDb->findById($this->request['id']);
+                $this->data->categories = $this->categoriesDb->findAll();
+                $this->data->songs = $this->songDb->findAllByAlbumId($this->request['id']);
+                $album = $this->albumDb->findById($this->request['id']);
+                $this->data->selectedCategories = $this->categoriesDb->findByAlbumId($this->request['id']);
+                $this->getView('album_block');
+         }
     }
     
     

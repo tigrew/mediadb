@@ -73,4 +73,18 @@ abstract class Controller {
     protected function route($controler = "", $action = "", stdClass $data , $request = array() ){
         Engine::Route($controler, $action, $data, $request );
     }
+    
+    protected function redirect($params = array()){
+        
+        /* Redirection vers une page différente du même dossier */
+            $host  = $_SERVER['HTTP_HOST'];
+            $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = "index.php?controller=".$params['controller']."&action=".$params['action'];
+            foreach($params['params'] as $key => $value){
+                $extra.="&".$key."=".$value;
+            }
+            
+            header("Location: http://$host$uri/$extra");
+            exit;
+    }
 }

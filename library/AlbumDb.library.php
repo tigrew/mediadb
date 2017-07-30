@@ -27,7 +27,7 @@ class AlbumDb extends DbBase {
     }
      public function save($album , $cover , $id = 0){
           if($id === 0){
-              $this->insertAlbum($album, $cover);
+              return $this->insertAlbum($album, $cover);
           }else{
               $this->updateAlbum($album, $cover, $id);
           }
@@ -62,6 +62,8 @@ class AlbumDb extends DbBase {
              
         ));
         $this->categoryDb->batchSave($id , $album['categories']);
+        return $id;
+        
          
     }
     

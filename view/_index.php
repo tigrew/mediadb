@@ -4,9 +4,10 @@
 
 
 
-        <table  class="table table-responsive table-bordered">
+        <table  class="table table-responsive">
             <thead>
                 <tr>
+                    <th>cover</th>
                     <th>Title</th>
                     <th>Release Date</th>
                     <th>Number of songs</th>
@@ -19,6 +20,7 @@
                 
                 <?php foreach ($data->albums as $bagline): ?>
                         <tr>
+                            <td><img src="public/<?= ($bagline['cover'])?$bagline['cover']:'' ; ?>"  class="img-thumbnail"   width="100" height="75"> </td>
                             <td><?= $bagline['title'] ?></td>
                             <td><?= $bagline['releasedate'] ?></td>
                             <td><?= $bagline['numbersong'] ?></td>
@@ -36,7 +38,7 @@
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=edit"><span class="glyphicon glyphicon-edit"></span></a>
                                 <?php endif; ?> 
                                     
-                                <?php if(Engine::isAuthorized("Album", "addBasket")): ?> 
+                                 <?php if(Engine::isAuthorized("Bag", "addBasket")): ?> 
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=addBasket"><span class="glyphicon glyphicon-download-alt"></span></a>
                                 <?php endif; ?>
                             </td>

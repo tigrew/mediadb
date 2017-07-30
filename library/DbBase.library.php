@@ -40,7 +40,7 @@ class DbBase {
             $this->statement->bindParam($i, $param[0], $param[1]);
             $i++;
         }
-        $this->statement->execute();
+        return $this->statement->execute();
     }
     /**
      * 
@@ -64,7 +64,7 @@ class DbBase {
      * 
      */
     public function execute($query, $params){
-        $this->executeQuery($query, $params);
+        return $this->executeQuery($query, $params);
     }
     
         public function findAll(){
@@ -137,8 +137,8 @@ class DbBase {
             }
         }
         try{
-            echo $insertQuery;
-             $this->execute($insertQuery, $params);
+            $this->execute($insertQuery, $params);
+            return $this->dbh->lastInsertId();
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         }

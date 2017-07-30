@@ -45,5 +45,18 @@ class BagDb extends DbBase {
             )
         );
     }
+    
+    public function addToBag($albumId = 0, $customerId = 0){
+        
+        $bag = $this->searchOneBy('User_id', array($customerId, PDO::PARAM_INT));
+       
+        $bagLineDb = new DbBase('Bag_Line');
+        
+        return $bagLineDb->insert(array(
+            'Album_id'=>array($albumId, PDO::PARAM_INT),
+            'Bag_id'=>array($bag['id'], PDO::PARAM_INT)
+        ));    
+                
+    }
    
 }

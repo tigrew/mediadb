@@ -1,5 +1,5 @@
 <div class="row">
-    <form class="form" method="post" enctype="multipart/form-data" action="/mediadb/index.php?<?= (isset($request['id']))?'id='.$request['id'].'&' : ''?>controller=Album&action=edit">
+    <form class="form" method="post" action="/mediadb/index.php?id=<?= $request['id']?>&controller=Album&action=edit">
         <h3>Album</h3>    
         <div class="col-md-4">
 
@@ -55,15 +55,6 @@
                 <input class="form-control" value="<?= ($data->album['price']) ? $data->album['price'] : ''; ?>" id="price" name="price" placeholder="€" type="number"/>
             </div>
 
-            <div class="form-group">
-                <div>
-                    <button class="btn btn-primary right" value="Add_Album" name="submit" type="submit">
-                        Submit
-                    </button>
-                </div>
-            </div>
-
-
         </div>
         <div class="col-md-3">
 
@@ -71,7 +62,7 @@
             <div class="form-group ">
 
                 <label class="control-label requiredField" for="price">
-                    Cover Upload
+                    Cover 
 
                     <span class="asteriskField">
                         *
@@ -80,28 +71,25 @@
                 <div class="input-group-addon">
                     <img src="public/<?= ($data->album['cover']) ? $data->album['cover'] : ''; ?>"  class="img-thumbnail"   width="200" height="150"> 
                 </div>
-                <input type="file" name="cover" id="fileToUpload">            
+                       
             </div>
-            <?php if (isset($request['id'])): ?>
-                <div class="panel panel-default">
-                    <div class="panel-heading"> Categories</div>
-                    <div class="panel-body"> 
-                    <select id="categories" name="categories[]" multiple>
-                        <?php foreach($data->categories as $key =>  $c): ?>
-                            <?php $equals = false;?>
-                            <?php foreach($data->selectedCategories as $key =>  $sc):?>
-                                <?php if($sc['Category_id'] === $c['id']): ?>
-                                    <?php $equals = true;?>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                            <option <?= ($equals === true )? 'selected="selected"': '' ?>value="<?= $c['id'] ?>"><?= $c['name'] ?></option>
+            <div class="panel panel-default">
+                <div class="panel-heading"> Categories</div>
+                <div class="panel-body"> 
+                <select id="categories" name="categories[]" multiple>
+                    <?php foreach($data->categories as $key =>  $c): ?>
+                        <?php $equals = false;?>
+                        <?php foreach($data->selectedCategories as $key =>  $sc):?>
+                            <?php if($sc['Category_id'] === $c['id']): ?>
+                                <?php $equals = true;?>
+                            <?php endif; ?>
                         <?php endforeach; ?>
-                    </select></div>
-                </div>
-            <?php endif;?>
+                        <option <?= ($equals === true )? 'selected="selected"': '' ?>value="<?= $c['id'] ?>"><?= $c['name'] ?></option>
+                    <?php endforeach; ?>
+                </select></div>
+            </div>
         </div>
-        </form>
-        <?php if (isset($request['id'])): ?>
+       
         <div class="col-md-5">
             <h4>Song list</h4>
             <table class="table">
@@ -116,52 +104,21 @@
                 </tr> 
                 <?php endforeach;?>
             </table>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-              Add a new song to album
-            </button>
+            <a class="btn btn-default" href="/mediadb/index.php?id=<?= $request['id']?>&controller=Bag&action=addBasket">Add to Basket</a>
         </div>
-    <?php endif; ?>
+         </form>
 </div>
 
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add new song</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-        <form class="form form-inline" method="POST" action="/mediadb/index.php?id=<?= $request['id']?>&controller=Album&action=addSong">
-            <div class="modal-body">
-                <div class="form-group ">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            Title
-                        </div>
-                        <input class="form-control" id="title" name="title" placeholder="Title" type="text"/>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            Duration
-                        </div>
-                        <input class="form-control"  id="duration" name="duration" placeholder="Duration" type="number"/>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" class="btn btn-primary" value="Add" name="Add" />
-            </div>
-        </form>
-    </div>
-                
 
   </div>
 </div>
+
+<script type="text/javascript">
+    
+$(document).ready(function(){
+    $(".form :input").attr("disabled", true);
+});
+</script>
+
+
