@@ -3,15 +3,15 @@
 class UserDb extends DbBase {
     
     const _Admin = 1;
-    const _Artist = 2;
-    const _Customer = 3;
+    const _Customer = 2;
+    const _Artist = 3;
     
     
     
     static $roles = array(
         self::_Admin => "Admin",
-        self::_Artist => "Artist",
         self::_Customer => "Customer",
+        self::_Artist => "Artist"
     );
     
     public function __construct($table = "") {

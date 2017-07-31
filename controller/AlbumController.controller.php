@@ -16,6 +16,7 @@ class AlbumController extends Controller {
     private $albumDb;
     private $categoriesDb;
     private $songDb;
+    private $test;
 
     /**
      * 
