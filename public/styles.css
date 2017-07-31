@@ -16,7 +16,7 @@ and open the template in the editor.
     
 }
 
- img:hover {
+ .zoom img:hover {
                 -webkit-backface-visibility: hidden;
                 backface-visibility: hidden;
                 -webkit-transform:translateZ(0) scale(1.5); /* Safari and Chrome */
@@ -26,6 +26,6 @@ and open the template in the editor.
                 transform:translatZ(0) scale(1.5);
 
             }
-img{
+.zoom img{
     z-index: 99999999999999;
   }
