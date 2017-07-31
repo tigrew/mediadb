@@ -24,7 +24,7 @@
                             <td><?= $bagline['title'] ?></td>
                             <td><?= $bagline['releasedate'] ?></td>
                             <td><?= $bagline['numbersong'] ?></td>
-                            <td><?= $bagline['nickname'] ?></td>
+                            <td><?= $bagline['Artist'] ?></td>
                             <td><?= $bagline['price'] ?></td>
                             <td>
                                 <?php if(Engine::isAuthorized("Album", "view")): ?>

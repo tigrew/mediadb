@@ -34,7 +34,7 @@ class AlbumController extends Controller {
      */
     public function index() {
         $this->data->albums = $this->albumDb->findAll();
-        // proper_debug($this->data->albums);
+        proper_debug($this->data->albums);
         $this->getView("album_index");
     }
 

@@ -21,11 +21,7 @@ class AlbumDb extends DbBase {
         $this->songDb = new SongDb();
     }
     public function findAll() {
-         return $this->fetchAll(" SELECT * FROM $this->table "
-            . " LEFT JOIN Artist ON Artist.id = Album.Artist_id ", array(
-               
-            )
-        );
+         return $this->fetchAll(" SELECT * FROM $this->table ");
     }
      public function save($album , $cover , $id = 0){
           if($id === 0){
@@ -87,28 +83,24 @@ class AlbumDb extends DbBase {
     public function globalSearch($info = ""){
         $query = "
             
-            SELECT Distinct Album.* FROM Album
+            SELECT Distinct Album.*, Artist.nickname as Artist FROM Album
 
             LEFT JOIN Artist ON Artist.id = Album.Artist_id
             LEFT JOIN Album_has_Category ON Album_has_Category.`Album_id` = Album.id
             LEFT JOIN Category ON Category.id = Album_has_Category.`Category_id`
             LEFT JOIN Song ON Song.`Album_id` = Album.id
 
-            WHERE Album.`title`  = ?
+            WHERE CONCAT(Artist.nickname, Category.name, song.title, Album.title ) like ?
 
-            OR   Artist.`nickname` = ?
-            OR   Category.`name`  = ?
-            OR   Song.`title`  = ?
-
-        ";
+         ";
+        
         
         $info = '%'.$info.'%';
-        
-        $this->execute($query, array( 
+    
+        return $this->fetchAll($query, array( 
             array($info, PDO::PARAM_STR),
-            array($info, PDO::PARAM_STR),
-            array($info, PDO::PARAM_STR),
-            array($info, PDO::PARAM_STR),
+   
+            
         ));
     }
     
