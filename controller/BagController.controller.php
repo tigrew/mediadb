@@ -78,6 +78,7 @@ class BagController extends Controller {
         if (isset($this->request['id'])) {
             if (Engine::HasUser()) {
                 $user = Engine::GetUser();
+                
                 $this->bagDb->addToBag($this->request['id'], $user['id']);
                 $this->data->BagLines = $this->bagDb->findAll($user['id']);
                 

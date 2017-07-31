@@ -136,6 +136,7 @@ class DbBase {
                 $insertQuery.= ", ".$key ." = ? ";
             }
         }
+        
         try{
             $this->execute($insertQuery, $params);
             return $this->dbh->lastInsertId();

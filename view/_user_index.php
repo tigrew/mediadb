@@ -1,3 +1,9 @@
+<?php 
+
+$nickname =  '<div class="form-group"><input type="text" name="nickname" class="form-control nickname" placeholder="nickname" value=""></div>';
+
+
+?>
 
 <div class="row">
     <div class="col-md-12">
@@ -57,7 +63,7 @@
                 <input type="password" name="password" class="form-control" placeholder="Password">
             </div>
             <div class="form-group">
-                <select name="role">
+                <select class="role" name="role">
                     <?php foreach ($data->roles as $role): ?>
                         <option value="<?= $role['id'] ?>"> <?= $role['roleName'] ?></option>
                     <?php endforeach; ?>
@@ -69,3 +75,14 @@
         </form>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.role').change(function(){
+            if($(this).val() == '<?=UserDb::_Artist?>'){
+                $(this).parent().append('<?=$nickname?>');
+            }else{
+                $('.nickname').remove();
+            }
+        });
+    });
+</script>

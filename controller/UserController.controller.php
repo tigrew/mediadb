@@ -57,16 +57,45 @@ class UserController extends Controller{
     /**
      * 
      */
-    public function add(){ 
+    public function add(){
        
        if(isset($this->request['email']) 
                && isset($this->request['password'])
                && isset($this->request['role'])){
-           $this->userDb->insert(array(
+           
+           $insertCustomer =   array(
                "mail" => array($this->request['email'], PDO::PARAM_STR),
                "password" => array($this->request['password'], PDO::PARAM_STR),
                "Role_id" => array($this->request['role'], PDO::PARAM_INT)
-           ));
+           );
+            
+           // tester si c'est un artiste
+           if(intval($this->request['role']) === UserDb::_Artist){
+              // creation fiche artiste
+                // creation d'un bag
+                $artistedb = new ArtistDb();
+                
+                
+                
+                
+                $id_artist = $artistedb->insert(array(
+                    'nickname' => array($this->request['nickname'], PDO::PARAM_STR)
+                ));
+                $insertCustomer['Artist_id'] = array($id_artist, PDO::PARAM_INT) ; 
+            }
+       
+           $id = $this->userDb->insert($insertCustomer);
+           
+           // tester si c'est un client
+           if(intval($this->request['role']) === UserDb::_Customer){
+               // creation d'un bag
+               $insertBag = array(
+                   'User_id' => array($id, PDO::PARAM_INT)
+               );
+               
+               $bag = new BagDb();
+               $bag->insert($insertBag);
+           }
        }else{
            $this->data->message = "Wrong or empty informations";
        }

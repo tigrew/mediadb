@@ -16,7 +16,6 @@ class AlbumController extends Controller {
     private $albumDb;
     private $categoriesDb;
     private $songDb;
-    private $test;
 
     /**
      * 
@@ -56,7 +55,7 @@ class AlbumController extends Controller {
             
         if (isset($this->request['submit']) ) {
             
-            $cover = FileManager::SaveFile("cover");
+            $cover = FileManager::SaveImage("cover", 0, 0);
 
             if(isset($this->request['id']) && $this->request['id'] !== null){
                 

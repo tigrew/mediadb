@@ -43,7 +43,7 @@ class AlbumDb extends DbBase {
             'stock' => array($album['stock'], PDO::PARAM_INT),
             'price' => array($album['price'], PDO::PARAM_INT),
             'cover' => array($cover['file'], PDO::PARAM_STR),
-            'Artist_id' => array(Engine::GetUser()['id'], PDO::PARAM_STR)
+            'Artist_id' => array(Engine::GetUser()['Artist_id'], PDO::PARAM_STR)
         ));
         $this->categoryDb->batchSave($id, $album['categories']);
        
@@ -60,7 +60,7 @@ class AlbumDb extends DbBase {
             'stock' => array($album['stock'], PDO::PARAM_INT),
             'price' => array($album['price'], PDO::PARAM_INT),
             'cover' => array($cover['file'], PDO::PARAM_STR),
-            'Artist_id' => array(Engine::GetUser()['id'], PDO::PARAM_STR)
+            'Artist_id' => array(Engine::GetUser()['Artist_id'], PDO::PARAM_STR)
              
         ));
         $this->categoryDb->batchSave($id , $album['categories']);
@@ -82,6 +82,34 @@ class AlbumDb extends DbBase {
         $this->songDb->batchDelete($idAlbum);
         // supprimer l'album
         $this->delete($idAlbum);
+    }
+    
+    public function globalSearch($info = ""){
+        $query = "
+            
+            SELECT Distinct Album.* FROM Album
+
+            LEFT JOIN Artist ON Artist.id = Album.Artist_id
+            LEFT JOIN Album_has_Category ON Album_has_Category.`Album_id` = Album.id
+            LEFT JOIN Category ON Category.id = Album_has_Category.`Category_id`
+            LEFT JOIN Song ON Song.`Album_id` = Album.id
+
+            WHERE Album.`title`  = ?
+
+            OR   Artist.`nickname` = ?
+            OR   Category.`name`  = ?
+            OR   Song.`title`  = ?
+
+        ";
+        
+        $info = '%'.$info.'%';
+        
+        $this->execute($query, array( 
+            array($info, PDO::PARAM_STR),
+            array($info, PDO::PARAM_STR),
+            array($info, PDO::PARAM_STR),
+            array($info, PDO::PARAM_STR),
+        ));
     }
     
     

@@ -20,7 +20,7 @@
                 
                 <?php foreach ($data->albums as $bagline): ?>
                         <tr>
-                            <td><img src="public/<?= ($bagline['cover'])?$bagline['cover']:'' ; ?>"  class="img-thumbnail"   width="100" height="75"> </td>
+                            <td><img src="<?= ($bagline['cover'])? ImageUtil::getImage($bagline['cover']):'' ; ?>"  class="img-thumbnail"   width="100" height="75"> </td>
                             <td><?= $bagline['title'] ?></td>
                             <td><?= $bagline['releasedate'] ?></td>
                             <td><?= $bagline['numbersong'] ?></td>

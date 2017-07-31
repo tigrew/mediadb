@@ -85,7 +85,7 @@
                     </span>
                 </label>
                 <div class="input-group-addon">
-                    <img src="public/<?= ($data->album['cover']) ? $data->album['cover'] : ''; ?>"  class="img-thumbnail grayscale"   width="200" height="150"> 
+                    <img src="<?= ($data->album['cover']) ? ImageUtil::getImage($data->album['cover'], false) : ''; ?>"  class="img-thumbnail grayscale"   width="200" height="150"> 
                 </div>
                 <input type="file" name="cover" id="fileToUpload">            
             </div>
@@ -121,7 +121,7 @@
                  <tr>
                     <td><?= $s['title']?></td>
                     <td><?= $s['duration']?></td>
-                    <td><a class ="btn btn-primary" href="/mediadb/index.php?album_id=<?= $request['id']?>&id=<?=$s['id']?>&controller=Album&action=removeSong"><span class="glyphicon glyphicon-minus"></span></a></td>
+                    <td><a class ="btn btn-primary" href="/mediadb/index.php?album_id=<?= $request['id']?>&id=<?=$s['idsong']?>&controller=Album&action=removeSong"><span class="glyphicon glyphicon-minus"></span></a></td>
                 </tr> 
                 <?php endforeach;?>
             </table>

@@ -12,7 +12,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./public/styles.css">
 
-      
+
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -71,7 +71,16 @@
                             </ul>
                         </li>
                     </ul>
-
+                    <div class="col-sm-4 col-md-4">
+                        <form class="navbar-form" method="post" action="/mediadb/index.php?controller=Dashboard&action=search" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="info" id="srch-term">
+                                <div class="input-group-btn">
+                                    <input class="btn btn-default" type="submit" value="Search" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
                     <?php if (!Engine::HasUser()): ?>
                         <form class="navbar-form navbar-right" method="post" action="/mediadb/index.php?controller=User&action=login">

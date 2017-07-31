@@ -69,7 +69,7 @@
                     </span>
                 </label>
                 <div class="input-group-addon">
-                    <img src="public/<?= ($data->album['cover']) ? $data->album['cover'] : ''; ?>"  class="img-thumbnail"   width="200" height="150"> 
+                    <img src="<?= ($data->album['cover']) ? ImageUtil::getImage($data->album['cover']) : ''; ?>"  class="img-thumbnail"   width="200" height="150"> 
                 </div>
                        
             </div>
