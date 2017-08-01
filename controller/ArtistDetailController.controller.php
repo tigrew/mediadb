@@ -8,11 +8,14 @@
 class ArtistDetailController extends Controller {
     
  private  $artistDb;
+ private  $awardDb;
     
     
     public function __construct() {
         parent::__construct();
         $this->artistDb = new ArtistDb();
+        $this->awardDb = new AwardDb();
+        $this->artistHasAwardDb = new ArtistHasAwardDb();
     }
     
     
@@ -20,14 +23,15 @@ class ArtistDetailController extends Controller {
         
       
        $this->data->artist =  $this->getArtist();
-       
+       $this->data->awards = $this->getAwards();
        $this->getView("artist_detail");
     }
     
     function edit(){
         
         $this->data->artist =  $this->getArtist();
-        
+        $this->data->awards = $this->getAwards();
+        $this->data->awardsNotWon = $this->awardDb->getAwardsNotWonForArtist($this->request['id']);
         $this->getView("artist_detail_edit");
     }
     
@@ -84,10 +88,40 @@ class ArtistDetailController extends Controller {
             
             
            $this->data->artist = $this->getArtist();
+           $this->data->awards = $this->getAwards();
            $this->data->message = "Artist profile has been edited";
            $this->getView('artist_detail');
             
         }
+        
+    }
+    
+    
+    function addaward(){
+        
+         if(isset($this->request['id'])){
+             
+             $json = file_get_contents('php://input');
+             $data = json_decode($json,true);
+            
+             try{
+               $this->artistHasAwardDb->insert(array(
+                   
+               "Artist_id" => array($this->request['id'], PDO::PARAM_INT),
+               "Award_id" => array($data['award_id'], PDO::PARAM_INT),  
+               "place" => array($data['place'], PDO::PARAM_STR),
+               "dateDelivery" => array($data['dateDelivery'], PDO::PARAM_STR)));
+            
+             }
+             catch(Exception $ex){
+                 
+                  var_dump($ex);
+             }
+         
+            
+         }
+         
+       
         
     }
     
@@ -98,6 +132,17 @@ class ArtistDetailController extends Controller {
            return  $this->data->artist =  $this->artistDb->findById($this->request['id']);
           } 
           return null;
+    }
+    
+    private function getAwards(){
+        
+          if(isset($this->request['id'])){
+           
+           return  $this->awardDb->getArtistAwards($this->request['id']);
+          } 
+          return null;
+        
+        
     }
     
 }

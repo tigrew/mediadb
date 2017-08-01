@@ -24,12 +24,35 @@
                    in <?=$data->artist['birthplace']?> </label> 
             </br>
             <a href="<?=$data->artist['website']?>" target="_blank">Site web </a>
-            
-            
-        
-       
+     
         </div>
       
+          
+        <div class="jumbotron">
+           
+            <table class = "table table-striped table-hover">
+                  <th>Price</th>
+                  <th>Win in</th>
+                  <th>On</th>
+                
+                
+              <?php  foreach($data->awards as $key => $award) : ?>
+             
+                <tr>
+                    <td><?php echo$award['name'] ?></td>
+                    <td><?= $award['place'] ?></td>
+                    <td><?=(new DateTime($award['dateDelivery']))->format("d-m-Y")?></td>
+                </tr>
+                
+               <?php endforeach; ?> 
+              
+
+            </table>
+            
+            
+        </div>
+        
+        
    
   </div>
       

@@ -29,3 +29,14 @@ and open the template in the editor.
 .zoom img{
     z-index: 99999999999999;
   }
+  
+
+
+/* Important part */
+.awards-modal > .modal-dialog{
+    overflow-y: initial !important
+}
+.awards-modal > .modal-dialog > .modal-content > .modal-body > .panel > #search-arwards{
+    height: 250px;
+    overflow-y: auto;
+}

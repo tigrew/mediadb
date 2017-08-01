@@ -66,16 +66,7 @@
             "Action": "remove",
             "UserType": "Admin|Customer"
         },
-        {
-            "Controller": "Artist",
-            "Action": "show",
-            "UserType": "Admin|Customer"
-        },
-        {
-            "Controller": "Artist",
-            "Action": "biography",
-            "UserType": "Admin|Customer"
-        },
+      
         {
             "Controller": "Album",
             "Action": "index",
@@ -105,7 +96,8 @@
             "Controller": "Album",
             "Action": "addBasket",
             "UserType": "Admin|Customer|Artist"
-        }, {
+        }, 
+        {
            "Controller":"Artist",
            "Action": "show",
            "UserType": "Admin|Customer|Artist|User"
@@ -125,6 +117,10 @@
         },{
            "Controller":"ArtistDetail",
            "Action": "update",
+           "UserType": "Artist"
+        },{
+           "Controller":"ArtistDetail",
+           "Action": "addaward",
            "UserType": "Artist"
         }
         
