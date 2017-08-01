@@ -74,7 +74,7 @@
                         </li>
                     </ul>
                     <div class="col-sm-4 col-md-4">
-                        <form class="navbar-form" method="post" action="/mediadb/index.php?controller=Dashboard&action=search" role="search">
+                        <form class="navbar-form" method="post" action="/mediadb/index.php?controller=Dashboard&action=search&offset=1&limit=1" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search" name="info" id="srch-term">
                                 <div class="input-group-btn">

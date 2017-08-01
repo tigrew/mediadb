@@ -24,7 +24,7 @@
                             <td><?= $bagline['title'] ?></td>
                             <td><?= $bagline['releasedate'] ?></td>
                             <td><?= $bagline['numbersong'] ?></td>
-                            <td><?= $bagline['nickname'] ?></td>
+                            <td><?= $bagline['Artist'] ?></td>
                             <td><?= $bagline['price'] ?></td>
                             <td>
                                 <?php if(Engine::isAuthorized("Album", "view")): ?>
@@ -36,10 +36,7 @@
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=remove"><span class="glyphicon glyphicon-remove"></span></a>
                                 <?php endif; ?> 
                                     
-                                 <?php if(Engine::isAuthorized("Bag", "addBasket")): ?> 
-                                    <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=addBasket"><span class="glyphicon glyphicon-download-alt"></span></a>
-                                
-                                 <?php endif; ?>
+                              
                             </td>
                         </tr>
                 <?php endforeach; ?>

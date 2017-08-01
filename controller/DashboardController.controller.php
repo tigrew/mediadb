@@ -45,15 +45,19 @@ class DashboardController extends Controller{
         $this->getView('index');
     }
     public function search(){
+        
         if(!isset($this->request['info'])){
-           $list = $this->albumDb->findAll(); 
+           
         }else{
             $list = $this->albumDb->globalSearch($this->request['info']);
         }
          
         if(!empty($list) && !is_null($list)){
             
-            $this->data->albums = $list;
+         $this->data->albums = $list;
+         $this->data->numberpage = count($this->data->albums);
+            
+            
             
         }else{
             $this->data->albums = array();

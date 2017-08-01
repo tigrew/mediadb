@@ -121,7 +121,7 @@
                  <tr>
                     <td><?= $s['title']?></td>
                     <td><?= $s['duration']?></td>
-                    <td><a class ="btn btn-primary" href="/mediadb/index.php?album_id=<?= $request['id']?>&id=<?=$s['idsong']?>&controller=Album&action=removeSong"><span class="glyphicon glyphicon-minus"></span></a></td>
+                    <td><a class ="btn btn-primary" href="/mediadb/index.php?album_id=<?= $request['id']?>&id=<?=$s['id']?>&controller=Album&action=removeSong"><span class="glyphicon glyphicon-minus"></span></a></td>
                 </tr> 
                 <?php endforeach;?>
             </table>

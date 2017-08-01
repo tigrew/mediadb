@@ -35,11 +35,7 @@
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=edit"><span class="glyphicon glyphicon-edit"></span></a>
                                     <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=remove"><span class="glyphicon glyphicon-remove"></span></a>
                                 <?php endif; ?> 
-                                    
-                                 <?php if(Engine::isAuthorized("Bag", "addBasket")): ?> 
-                                    <a class="btn btn-default" href="/mediadb/index.php?id=<?= $bagline[0] ?>&controller=Album&action=addBasket"><span class="glyphicon glyphicon-download-alt"></span></a>
-                                
-                                 <?php endif; ?>
+                             
                             </td>
                         </tr>
                 <?php endforeach; ?>
