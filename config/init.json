@@ -2,9 +2,9 @@
 {
     "current_app": "index",
     "db_name": "mediadb",
-    "db_pass": "xbz333",
+    "db_pass": "root",
     "db_host": "localhost", 
-    "db_user": "adminmedia",
+    "db_user": "root",
     "file_directory" : "public/",
     "file_html" : "public/",
     "controller_dir": "controller",
@@ -125,6 +125,26 @@
         },{
            "Controller":"ArtistDetail",
            "Action": "update",
+           "UserType": "Artist"
+        },{
+           "Controller":"Dashboard",
+           "Action": "search",
+           "UserType": "Admin|Customer|Artist|User"
+        },{
+           "Controller":"Bag",
+           "Action": "addBasket",
+           "UserType": "Admin|Customer|Artist|User"
+        },{
+           "Controller":"Album",
+           "Action": "addSong",
+           "UserType": "Artist"
+        },{
+           "Controller":"Album",
+           "Action": "removeSong",
+           "UserType": "Artist"
+        },{
+           "Controller":"Album",
+           "Action": "remove",
            "UserType": "Artist"
         }
         
