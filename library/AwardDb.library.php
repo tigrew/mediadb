@@ -12,5 +12,30 @@
  * @author ginomazzola
  */
 class AwardDb extends DbBase {
-    //put your code here
+    
+    
+     public function __construct($table = "") {
+        parent::__construct('Award');
+    }
+    
+    
+    public function getArtistAwards($idArtist){
+        
+       return $this->fetchAll("SELECT id,Artist_id,dateDelivery,place,name FROM Artist_has_Award LEFT JOIN Award ON Award_id = Award.id WHERE Artist_id = ?", array(array($idArtist, PDO::PARAM_INT)));
+        
+        
+    }
+    
+    public function getAwardsNotWonForArtist($idArtist){
+        
+        return $this->fetchAll("SELECT id,name FROM Award WHERE id NOT IN (
+        SELECT id
+        FROM Artist_has_Award 
+        LEFT JOIN Award 
+        ON Award_id = Award.id 
+        WHERE Artist_id = ?
+        )",array(array($idArtist, PDO::PARAM_INT))); 
+        
+    }
+    
 }
