@@ -34,7 +34,7 @@ class AlbumController extends Controller {
      */
     public function index() {
         $this->data->albums = $this->albumDb->findAll();
-        proper_debug($this->data->albums);
+       // proper_debug($this->data->albums);
         $this->getView("album_index");
     }
 
@@ -56,12 +56,8 @@ class AlbumController extends Controller {
         if (isset($this->request['submit']) ) {
             
             $cover = FileManager::SaveImage("cover", 0, 0);
-
+            
             if(isset($this->request['id']) && $this->request['id'] !== null){
-                
-                if(IsArtistAlbum::Helper($this->request['id'])){
-                   
-                }
                 
                 if($cover['file'] === false ){
                     $cover['file'] = $album['cover'];
@@ -94,8 +90,6 @@ class AlbumController extends Controller {
         }else{
             
             $this->data->album = $album;
-            
-            
         }  
         $this->getView("album_add");
     }
@@ -127,7 +121,10 @@ class AlbumController extends Controller {
     
     public function removeSong(){
         if(isset($this->request['id']) && isset($this->request['album_id'])){
+            
             $this->songDb->delete($this->request['id']);
+            
+            
             $this->redirect(
                     array( 
                         "controller" =>"Album",

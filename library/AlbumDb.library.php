@@ -46,10 +46,8 @@ class AlbumDb extends DbBase {
       
         
     }
-    private function insertAlbum($album , $cover, $categories){
-        
+    private function insertAlbum($album , $cover){
          $id = $this->insert(array(
-             
             'title' => array($album['title'], PDO::PARAM_STR),
             'releasedate' => array($album['releasedate'], PDO::PARAM_STR),
             'numbersong' => array($album['numbersong'], PDO::PARAM_INT),
@@ -57,15 +55,14 @@ class AlbumDb extends DbBase {
             'price' => array($album['price'], PDO::PARAM_INT),
             'cover' => array($cover['file'], PDO::PARAM_STR),
             'Artist_id' => array(Engine::GetUser()['Artist_id'], PDO::PARAM_STR)
-             
         ));
-        $this->categoryDb->batchSave($id , $album['categories']);
+        
         return $id;
     }
     public function isArtistAlbum($albumId){
         
         $album = $this->fetch("SELECT * FROM Album WHERE Artist_id = ? AND id = ? ", array(
-            array(Engine::GetUser()['id'], PDO::PARAM_INT),
+            array(Engine::GetUser()['Artist_id'], PDO::PARAM_INT),
             array($albumId, PDO::PARAM_INT)
         ));
         return is_array($album);
