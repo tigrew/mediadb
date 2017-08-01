@@ -74,10 +74,6 @@ class UserController extends Controller{
               // creation fiche artiste
                 // creation d'un bag
                 $artistedb = new ArtistDb();
-                
-                
-                
-                
                 $id_artist = $artistedb->insert(array(
                     'nickname' => array($this->request['nickname'], PDO::PARAM_STR)
                 ));
@@ -85,6 +81,19 @@ class UserController extends Controller{
             }
        
            $id = $this->userDb->insert($insertCustomer);
+           
+           
+             
+           // tester si c'est un artiste
+           if(intval($this->request['role']) === UserDb::_Artist){
+              // mise a jour fiche artiste avec l'id de l'utilisateur
+                
+                $artistedb = new ArtistDb();
+                $artistedb->update( $id_artist, array(
+                    'User_id' => array($id, PDO::PARAM_INT)
+                ));
+               
+            }
            
            // tester si c'est un client
            if(intval($this->request['role']) === UserDb::_Customer){
