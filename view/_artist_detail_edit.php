@@ -17,10 +17,13 @@
       
     <div class="col-xs-5 col-sm-5">
            
-       
+       <div class="thumbnail">
         <img class="img-responsive" src ="<?= !empty($data->artist['picture']) ? ImageUtil::getImage($data->artist['picture'],true) :  ImageUtil::getDefaultImage("artist",false)?>" />
         <input class = "form-control" type ="file" name = "fileToUpload" value ="change your picture" />
-       
+        <?php if(!empty($data->artist['picture'])) : ?>
+        <a href="/mediadb/index.php?id=<?= $data->artist['id']?>&controller=ArtistDetail&action=deleteImage">Supprimer l'image</a>
+        <?php endif;?>
+       </div>
         <div class ="form-group">
        
         
@@ -68,7 +71,7 @@
                     <td><label class ="control-label award-name"><?=$award['name']?> </label></td>
                     <td><label class ="control-label award-place"><?= $award['place'] ?></label></td>
                     <td><label class ="control-label award-dateDelivery"><?= (new DateTime($award['dateDelivery']))->format("d-m-Y") ?></label></td> 
-                    <td><button class="btn btn-primary delete-award"  value="<?=$award['id']?>">Delete</button></td>
+                    <td><a class="btn btn-primary" href="/mediadb/index.php?id=<?= $data->artist['id']?>&awardid=<?=$award['id']?>&controller=ArtistDetail&action=deleteAward#add-award">Delete</a></td>
                 </tr>
                 
                <?php endforeach; ?> 

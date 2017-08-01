@@ -12,9 +12,9 @@
       
     <div class="col-xs-12 col-sm-5">
            
-          
+        <div class="thumbnail">  
         <img class="img-responsive" src ="<?= !empty($data->artist['picture']) ? ImageUtil::getImage($data->artist['picture'],true) :  ImageUtil::getDefaultImage("artist",false)?>" />
-        
+        </div>
         <div class="jumbotron">
          
             <label>nom réel:</label> 

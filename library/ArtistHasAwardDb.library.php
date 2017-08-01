@@ -17,4 +17,18 @@ class ArtistHasAwardDb extends DbBase{
         parent::__construct('Artist_has_Award');
     }
     
+    
+    function deleteArwardArtist($idAward,$idArtist){
+        
+        
+        try{
+        $this->execute("DELETE FROM Artist_has_Award WHERE Artist_id = ? AND Award_id = ?",
+         array(array($idArtist,PDO::PARAM_INT),array($idAward,PDO::PARAM_INT)));
+        }catch(Exception $ex){
+            
+            var_dump($ex);
+        }
+        
+    }
+    
 }

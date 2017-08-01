@@ -9,7 +9,7 @@ class ArtistDetailController extends Controller {
     
  private  $artistDb;
  private  $awardDb;
-    
+ private  $artistHasAwardDb;   
     
     public function __construct() {
         parent::__construct();
@@ -63,8 +63,8 @@ class ArtistDetailController extends Controller {
              throw new ErrorException("Artist User is trying Url Hacking .");
             
              }
-             
-             if($picture['file'] != $this->data->artist['picture']){
+         
+             if( $picture['file'] != false &&  $picture['file'] != $this->data->artist['picture']){
                  
                  FileManager::DeleteImage($this->data->artist['picture']);
                  
@@ -79,7 +79,7 @@ class ArtistDetailController extends Controller {
                "birthdate" => array($this->request['birthdate'], PDO::PARAM_STR),
                "birthplace" => array($this->request['birthplace'], PDO::PARAM_STR),
                "biography" => array($this->request['biography'], PDO::PARAM_STR),
-               "picture" => array($picture['file'], PDO::PARAM_STR),
+               "picture" => array($picture['file'] != false ? $picture['file'] : $this->data->artist['picture'] , PDO::PARAM_STR),
                "website" => array($this->request['website'], PDO::PARAM_STR),
            ));
          
@@ -87,12 +87,23 @@ class ArtistDetailController extends Controller {
                 
             
             
-           $this->data->artist = $this->getArtist();
-           $this->data->awards = $this->getAwards();
-           $this->data->message = "Artist profile has been edited";
-           $this->getView('artist_detail');
+              $this->refresh();
             
         }
+        
+    }
+    
+    function deleteImage(){
+     
+         $this->data->artist = $this->getArtist();
+      
+         if( !empty($this->data->artist['picture'])){
+                 
+                 FileManager::DeleteImage($this->data->artist['picture']);
+                 $this->artistDb->execute("UPDATE Artist SET picture = NULL WHERE id = ?",array(array($this->data->artist['id'],PDO::PARAM_INT)));              
+                 $this->refresh();
+             }
+        
         
     }
     
@@ -125,6 +136,27 @@ class ArtistDetailController extends Controller {
         
     }
     
+    function deleteAward(){
+        
+  
+         
+          if(isset($this->request['id']) && isset($this->request['awardid'])){
+              
+              $this->artistHasAwardDb->deleteArwardArtist($this->request['awardid'], $this->request['id']);
+              
+              
+              $this->data->artist = $this->getArtist();
+              $this->data->awards = $this->getAwards();
+              $this->data->awardsNotWon = $this->awardDb->getAwardsNotWonForArtist($this->request['id']);
+              $this->getView('artist_detail_edit');
+             
+              
+          }
+        
+        
+    }
+    
+    
     private function getArtist(){
         
           if(isset($this->request['id'])){
@@ -141,6 +173,16 @@ class ArtistDetailController extends Controller {
            return  $this->awardDb->getArtistAwards($this->request['id']);
           } 
           return null;
+        
+        
+    }
+    
+    private function refresh(){
+        
+         $this->data->artist = $this->getArtist();
+         $this->data->awards = $this->getAwards();
+         $this->data->message = "Artist profile has been edited";
+         $this->getView('artist_detail');
         
         
     }
